@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: dubbo-web
+
+demo:
+  service:
+    version: 1.0.0
+
+dubbo:
+  registry:
+    address: nacos://115.220.10.37:8848
+  # 消费者默认不检测是否有服务注册
+  consumer:
+    check: false
+    timeout: 500000
+
+# nacos配置中心
+nacos:
+  config:
+    server-addr: 118.184.218.184:8848
+    # 命名空间的id
+    namespace: 7d32a129-a6ca-4ba1-a75e-96aaed89da33

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>springboot-dubbo-nacos</artifactId>
+        <groupId>com.example</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dubbo-web</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>dubbo-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <!-- 因为在api层引入了mybatis所以需要排除mybatis -->
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Apache Dubbo  -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <!--nacos配置中心-->
+        <!-- Dubbo Registry Nacos -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+        </dependency>
+        <!--nacos配置中心-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!--        seata nacos-config-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-config-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-discovery-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-config-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>nacos-client</artifactId>
+                    <groupId>com.alibaba.nacos</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--        seata nacos-config-->
+    </dependencies>
+
+</project>
