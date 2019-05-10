@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
                 new LambdaQueryWrapper<User>().eq(User::getUserName, "haha")
         );
         String say = liveService.sayName();
-        int a = 1/0;
+//        int a = 1/0;
         return String.format(serviceName, name + "：" +say);
     }
 }

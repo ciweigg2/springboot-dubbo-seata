@@ -12,7 +12,7 @@ dubbo:
   # 消费者默认不检测是否有服务注册
   consumer:
     check: false
-    timeout: 500000
+    timeout: 10000
 
 # nacos配置中心
 nacos:
