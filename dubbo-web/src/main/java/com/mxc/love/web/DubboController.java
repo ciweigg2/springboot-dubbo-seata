@@ -4,6 +4,7 @@ import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.mxc.love.model.User;
 import com.mxc.love.service.UserService;
+import com.mxc.love.web.handler.ApiResult;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +23,20 @@ public class DubboController {
     @NacosValue(value = "${name:unknown}" ,autoRefreshed = true)
     private String name;
 
+    private boolean isTrue = true;
+
     @Autowired
     private User user;
 
     @RequestMapping(value = "/sayHello")
     @GlobalTransactional
-    public String dubboSayHello(){
+    public ApiResult dubboSayHello(){
         log.info("全局事务Xid：" + RootContext.getXID());
-        return demoService.sayHello("sayHello");
+        String sayHello = demoService.sayHello("sayHello");
+        if(isTrue){
+            throw new RuntimeException("模拟事务回滚，全局事务Xid：" + RootContext.getXID());
+        }
+        return ApiResult.success(sayHello);
     }
 
     //监听nacos配置文件的变化
