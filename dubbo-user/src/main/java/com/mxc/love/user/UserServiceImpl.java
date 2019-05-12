@@ -25,6 +25,7 @@ import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -53,11 +54,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public String sayHello(String name) {
         log.info("全局事务Xid：" + RootContext.getXID());
+        //隐示传参
+        RpcContext.getContext().setAttachment("CRT_MEMBER_ID", "隐示传参呀");
         userMapper.update(
                 new User().setUserName("测试分布式事务"),
                 new LambdaQueryWrapper<User>().eq(User::getUserName, "haha")
         );
         String say = liveService.sayName();
-        return String.format(serviceName, name + "：" +say);
+        return name.concat(say);
     }
 }
